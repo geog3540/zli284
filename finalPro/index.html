@@ -67,6 +67,7 @@ body {
 #map_sub_div {
 	display: inline-block;
 	overflow:hidden;
+<<<<<<< HEAD
 	width: 37%;
 
 /*	width: 30%;*/
@@ -86,6 +87,9 @@ body {
 	margin-left: 5%;
 	font-size: 30px;
 
+=======
+	width: 33%;
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 }
 
 </style>
@@ -129,7 +133,11 @@ var boroJSON =  "worldmap.geojson";
 //var boroJSON = "https://gist.githubusercontent.com/gmculp/b76fbaa2bf72f92c638f/raw/UHF34.json";
 //this will change based on data
 //var spatial = "https://gist.githubusercontent.com/gmculp/b76fbaa2bf72f92c638f/raw/UHF34.json";
+<<<<<<< HEAD
 var spatial = "worldmap.geojson";
+=======
+var spatial = "worldmap.json";
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 
 //test data
 //var h_data = "https://gist.githubusercontent.com/gmculp/b76fbaa2bf72f92c638f/raw/health_data_2012B.json";
@@ -150,9 +158,14 @@ var path = d3.geo.path().projection(projection);
 
 //var map_dim = {margin:{ top: 15, right: 0, bottom: 15, left: 20 }, width: 700, height: 700, legend:{top:70, left:70, width:175, height:175}};
 
+<<<<<<< HEAD
 var map_dim = {margin:{ top: w*195, right: w*0, bottom: w*15, left: w*20 }, width: w*850, height: w*700, legend:{top:w*110, left:w*610, width:w*175, height:w*125}};
 
 d3.select('body').append('div').attr('id', 'tooltip').attr('style', 'position: absolute; opacity: 1;');
+=======
+var map_dim = {margin:{ top: w*15, right: w*0, bottom: w*15, left: w*20 }, width: w*700, height: w*700, legend:{top:w*70, left:w*70, width:w*175, height:w*175}};
+
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 var map_svg = d3.select("#map_div").append("svg").attr("id", "map_svg");
 
 
@@ -167,8 +180,13 @@ var path1 = d3.geo.path().projection(projection1);
 //var map2_dim = {margin:{ top: 15, right: 0, bottom: 0, left: 10 }, width: 400, height: 400, legend:{top:25, left:15, width:175, height:175, dim:30, orientation:"horizontal"}};
 //var map1_dim = {margin:{ top: 15, right: 0, bottom: 0, left: 10 }, width: 400, height: 400, legend:{top:45, left:45, width:175, height:175, dim:30, orientation:"vertical"}};
 
+<<<<<<< HEAD
 var map2_dim = {margin:{ top: w*55, right: w*0, bottom: w*0, left: w*10 }, width: w*630, height: w*400, legend:{top:w*52, left:w*432, width:w*175, height:w*175, dim:w*15, orientation:"horizontal"}};
 var map1_dim = {margin:{ top: w*15, right: w*0, bottom: w*0, left: w*10 }, width: w*630, height: w*400, legend:{top:w*58, left:w*585, width:w*175, height:w*175, dim:w*15, orientation:"vertical"}};
+=======
+var map2_dim = {margin:{ top: w*15, right: w*0, bottom: w*0, left: w*10 }, width: w*400, height: w*400, legend:{top:w*25, left:w*15, width:w*175, height:w*175, dim:w*30, orientation:"horizontal"}};
+var map1_dim = {margin:{ top: w*15, right: w*0, bottom: w*0, left: w*10 }, width: w*400, height: w*400, legend:{top:w*45, left:w*45, width:w*175, height:w*175, dim:w*30, orientation:"vertical"}};
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 
 var map1_svg = d3.select("#map1_div").append("svg").attr("id", "map1_svg");
 var map2_svg = d3.select("#map2_div").append("svg").attr("id", "map2_svg");

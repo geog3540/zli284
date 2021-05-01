@@ -1,5 +1,10 @@
 function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_data, x_var, y_var) {
 
+<<<<<<< HEAD
+=======
+function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_data, x_var, y_var) {
+
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 	var map_data=json_data.gdp_air;
 	var year = document.getElementById('year_list').value;
 
@@ -14,7 +19,11 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 	//add svg elements
 	var map_g = d3.select("#"+map_svg_id).append('g').attr("id", "map_g");
 
+<<<<<<< HEAD
 	var map = map_g.append('g').attr("transform", "translate(" + 0 + "," + map_dim.margin.top + ")"); 
+=======
+	var map = map_g.append('g').attr("transform", "translate(" + 0 + "," + map_dim.margin.top + ")");
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 
     var geo_entity = map.append("g").attr("class", "geo_entity");
 
@@ -25,13 +34,20 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
     var geo_entity_hover = map.append("g");
 
 	//scales for map
+<<<<<<< HEAD
 	var y_quantile = (!y_var) ? "" : d3.scale.quantile().domain($.map(map_data, function (g) { return g[y_var+year]; })).range([0, 1,2]);
 
 	var x_quantile = d3.scale.quantile().domain($.map(map_data, function (g) { return g[x_var+year]; })).range([0, 1,2]);
+=======
+	var y_quantile = (!y_var) ? "" : d3.scale.quantile().domain($.map(map_data, function (g) { return g[y_var+year]; })).range([0, 1]);
+
+	var x_quantile = d3.scale.quantile().domain($.map(map_data, function (g) { return g[x_var+year]; })).range([0, 1]);
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 
 
 	$.getJSON(spatial, function (json) {
 
+<<<<<<< HEAD
 		//var geometries = json.objects.unnamed.geometries;
 		//console.log(json);
 		//set the projection
@@ -41,6 +57,17 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 			.data(json.features.filter(function (d) {
 				//console.log(d);
 				//if(d.properties.ADM0_A3 != undefined)
+=======
+		var geometries = json.objects.unnamed.geometries;
+		console.log(json);
+		//set the projection
+		set_projection(map_projection, map_path, json, map_dim.width, map_dim.height);
+
+		openspace.selectAll("path")
+			.data(geometries.filter(function (d) {
+				console.log(d);
+				if(d.properties.ADM0_A3 != undefined)
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 					return d.properties.ADM0_A3.length == 0;
 			}))
 			.enter().append("path")
@@ -48,13 +75,19 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 				.attr("pointer-events", "none");
 
 		geo_entity.selectAll("path")
+<<<<<<< HEAD
 			.data(json.features.filter(function (d) {
 				//if(d.properties.ADM0_A3 != undefined)
+=======
+			.data(geometries.filter(function (d) {
+				if(d.properties.ADM0_A3 != undefined)
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 					return d.properties.ADM0_A3.length > 0;
 				}))
 			.enter().append("path")
 			.attr("d", map_path)
 			.style("fill", function(d) {
+<<<<<<< HEAD
 				var test_hdata = $.map(map_data.filter(function (dd) { 
 					//console.log(dd);
 					return dd.CountryCode == d.properties.ADM0_A3; }), function (g) { 
@@ -68,6 +101,10 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 				}
 
 				
+=======
+				var test_hdata = $.map(map_data.filter(function (dd) { return dd.CountryCode == d.properties.ADM0_A3; }), function (g) { return g; });
+				return (!y_var)?palette[x_quantile(test_hdata[0][eval(x_var+year)])]:palette[y_quantile(test_hdata[0][eval(y_var+year)])][x_quantile(test_hdata[0][eval(x_var+year)])];
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 			});
 
 			//load borough boundaries
@@ -79,13 +116,18 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 				// 		.attr("pointer-events", "none");
 
 				geo_entity_hover.selectAll("path")
+<<<<<<< HEAD
 					.data(json.features.filter(function (d) { return d.properties.ADM0_A3.length > 0; }))
+=======
+					.data(geometries.filter(function (d) { return d.properties.ADM0_A3.length > 0; }))
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 					.enter().append("path")
 						.attr("class", "UHF_out")
 						.attr("id", function (d) { return "UHF_" + d.properties.ADM0_A3; })
 						.attr("d", map_path)
 						.attr("title", function(d) { return d.properties.ADMIN; })
 						.on("mouseover", function(d,i){
+<<<<<<< HEAD
 
 							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,255,255)").attr("r", 10);
 							//d3.select(this).attr("class", "UHF_over");
@@ -93,6 +135,11 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 							d3.select('#tooltip')
 							.style('opacity', 1)
 							.text('1');
+=======
+							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,255,255)").attr("r", 5);
+							//d3.select(this).attr("class", "UHF_over");
+							d3.selectAll("#UHF_" + d.properties.ADM0_A3).attr("class", "UHF_over");
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 						})
 						.on("mouseout", function(d){
 							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,0,0)").attr("r", 3);
@@ -107,7 +154,11 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 	//add legend
 	var svg_legend = map_g.append("g").attr("class", "svg_legend").attr("transform",
 	"translate(" + map_dim.legend.left + "," +  map_dim.legend.top + ")");
+<<<<<<< HEAD
 	var tick_size = 10;
+=======
+	var tick_size = 20;
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 	//scales for first variable... used by both map types
 	var x_ticks=x_quantile.quantiles().slice(0);
 			x_ticks.unshift(d3.min($.map(map_data, function (g) { return parseFloat(g[x_var+year]); })));
@@ -194,7 +245,11 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 			.attr("text-anchor", "middle")
 			.attr("x", map_dim.width/2)
 			.attr("y",map_dim.margin.top)
+<<<<<<< HEAD
 			.text(x_field[0].Indicator + " (" + x_field[0].Measure + ") ");
+=======
+			.text(x_field[0].Indicator + " (" + x_field[0].Measure + "), ");
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 
 	}
 
@@ -265,7 +320,11 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 			.attr("text-anchor", "middle")
 			.attr("x", map_dim.legend.width/2-20)
 			.attr("y", -tick_size)
+<<<<<<< HEAD
 			.text(x_field[0].Indicator + " (" + x_field[0].Measure + ") ");
+=======
+			.text(x_field[0].Indicator + " (" + x_field[0].Measure + "), ");
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 
 		svg_legend.append('g')
 			.attr('transform', 'translate(0,0)')
@@ -281,6 +340,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 			.attr("y", 0)
 			.attr("x", 0)
 			.attr('transform', 'translate(' + (map_dim.legend.width+tick_size) + ',' + (map_dim.legend.height+tick_size)/2 + ') rotate(90)')
+<<<<<<< HEAD
 			.html(function () {
 			  return "<tspan x='0' dy='-35px'>" + y_field[0].Indicator + "</tspan>" 
 			       + "<tspan x='0' dy='20px'>" + "("+y_field[0].Measure +")"+ "</tspan>";
@@ -288,6 +348,9 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 						
 			//.text(function() {return <tspan>y_field[0].Indicator</tspan> + "<tspan>"+y_field[0].Measure+"</tspan>";});
 			// .text(y_field[0].Indicator  + " (" + y_field[0].Measure + ") ");
+=======
+			.text(y_field[0].Indicator + " (" + y_field[0].Measure + "), ");
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
 
 
 		svg_legend.append('g')
@@ -338,4 +401,8 @@ function set_projection(projection, path, json, map_width, map_height) {
 		.scale(s)
 		.translate(t);
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4e73a40399f8e3390abe77955a7c86523ab0ad71
