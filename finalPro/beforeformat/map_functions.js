@@ -5,7 +5,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 
 	//assign dimensions
 	d3.select("#"+map_svg_id)
-		.attr("width", map_dim.width-20 + (map_dim.margin.left + map_dim.margin.right))
+		.attr("width", map_dim.width + (map_dim.margin.left + map_dim.margin.right))
 		.attr("height", map_dim.height + (map_dim.margin.top + map_dim.margin.bottom))
 
 	//remove old svg nodes
@@ -14,7 +14,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 	//add svg elements
 	var map_g = d3.select("#"+map_svg_id).append('g').attr("id", "map_g");
 
-	var map = map_g.append('g').attr("transform", "translate(" + 0 + "," + map_dim.margin.top + ")"); 
+	var map = map_g.append('g').attr("transform", "translate(" + 0 + "," + map_dim.margin.top + ")"); //0
 
     var geo_entity = map.append("g").attr("class", "geo_entity");
 
@@ -35,7 +35,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 		//var geometries = json.objects.unnamed.geometries;
 		//console.log(json);
 		//set the projection
-		set_projection(map_projection, map_path, json, map_dim.width, map_dim.height);  ////
+		set_projection(map_projection, map_path, json, map_dim.width, map_dim.height);
 		//console.log(json.features);
 		openspace.selectAll("path")
 			.data(json.features.filter(function (d) {
@@ -107,7 +107,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 	//add legend
 	var svg_legend = map_g.append("g").attr("class", "svg_legend").attr("transform",
 	"translate(" + map_dim.legend.left + "," +  map_dim.legend.top + ")");
-	var tick_size = 10;
+	var tick_size = 20;
 	//scales for first variable... used by both map types
 	var x_ticks=x_quantile.quantiles().slice(0);
 			x_ticks.unshift(d3.min($.map(map_data, function (g) { return parseFloat(g[x_var+year]); })));
@@ -134,11 +134,6 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 
 
 		var swatch=(!map_dim.legend.dim)?30:map_dim.legend.dim;
-		// if (map_dim.legend.dim) {
-		// 	console.log(map_dim.legend.dim);
-		// } else {
-		// 	console.log('NaN');
-		// }
 		var leg_orient =(!map_dim.legend.orientation)?"vertical":(map_dim.legend.orientation);
 
 		xAxis.tickSize(-(swatch+tick_size),0,0);
@@ -189,12 +184,11 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 			.attr("y2", function(d, i){ return (leg_orient=="vertical")?map_dim.legend.height:swatch;});
 
 		map_g.append("text")
-			.style("font-size", "15px")
 			.attr("class", "x label")
 			.attr("text-anchor", "middle")
 			.attr("x", map_dim.width/2)
 			.attr("y",map_dim.margin.top)
-			.text(x_field[0].Indicator + " (" + x_field[0].Measure + ") ");
+			.text(x_field[0].Indicator + " (" + x_field[0].Measure + "), ");
 
 	}
 
@@ -260,12 +254,11 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 
 
 		svg_legend.append("text")
-			.style("font-size", "15px")
 			.attr("class", "x label")
 			.attr("text-anchor", "middle")
-			.attr("x", map_dim.legend.width/2-20)
+			.attr("x", map_dim.legend.width/2)
 			.attr("y", -tick_size)
-			.text(x_field[0].Indicator + " (" + x_field[0].Measure + ") ");
+			.text(x_field[0].Indicator + " (" + x_field[0].Measure + "), ");
 
 		svg_legend.append('g')
 			.attr('transform', 'translate(0,0)')
@@ -275,19 +268,12 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 
 
 		svg_legend.append("text")
-			.style("font-size", "15px")
 			.attr("class", "y label")
 			.attr("text-anchor", "middle")
 			.attr("y", 0)
 			.attr("x", 0)
 			.attr('transform', 'translate(' + (map_dim.legend.width+tick_size) + ',' + (map_dim.legend.height+tick_size)/2 + ') rotate(90)')
-			.html(function () {
-			  return "<tspan x='0' dy='-35px'>" + y_field[0].Indicator + "</tspan>" 
-			       + "<tspan x='0' dy='20px'>" + "("+y_field[0].Measure +")"+ "</tspan>";
-			});
-						
-			//.text(function() {return <tspan>y_field[0].Indicator</tspan> + "<tspan>"+y_field[0].Measure+"</tspan>";});
-			// .text(y_field[0].Indicator  + " (" + y_field[0].Measure + ") ");
+			.text(y_field[0].Indicator + " (" + y_field[0].Measure + "), ");
 
 
 		svg_legend.append('g')
