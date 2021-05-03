@@ -190,8 +190,6 @@ var path = d3.geo.path().projection(projection);
 
 var map_dim = {margin:{ top: w*195, right: w*0, bottom: w*15, left: w*20 }, width: w*850, height: w*700, legend:{top:w*110, left:w*600, width:w*175, height:w*125}};
 
-d3.select('body').append('div').attr('id', 'tooltip').attr('style', 'position: absolute; opacity: 1;');
-
 var map_svg = d3.select("#map_div").append("svg").attr("id", "map_svg");
 
 

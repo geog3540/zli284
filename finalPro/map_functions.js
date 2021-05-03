@@ -86,21 +86,8 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 						.attr("title", function(d) { return d.properties.ADMIN; })
 						.on("mouseover", function(d,i){
 
-							var id = "#pt_"+d.properties.ADM0_A3;
-							var map = d3.select(d.map);
-							console.log(map);
-							var polygonOnMap = getBoundingBoxCenter(map.select(id));
-
-							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,255,255)").attr("r", 10);
-							//d3.select(this).attr("class", "UHF_over");
+							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,255,255)").attr("r", 5);
 							d3.selectAll("#UHF_" + d.properties.ADM0_A3).attr("class", "UHF_over");
-							d3.select('#tooltip')
-							.transition()
-							.style('opacity', 1)
-							.style("font-size", "15px")
-							.text(d.properties.ADMIN);
-
-
 
 						})
 						.on("mouseout", function(d){
@@ -305,7 +292,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 				.attr("cy", function (d,i) { return y(d[y_var+year]); } )
 				.attr("cx", function (d,i) { return x(d[x_var+year]); } )
 				.attr("r", 3)
-				.attr("id", function (d) { return "pt_" + d.geo_id; })
+				.attr("id", function (d) { return "pt_" + d.CountryCode; })
 				.on("mouseover", function(d,i){
 					d3.select(this).style("fill", "rgb(0,255,255)").attr("r", 5);
 					d3.selectAll("#UHF_" + d.CountryCode).attr("class", "UHF_over");
