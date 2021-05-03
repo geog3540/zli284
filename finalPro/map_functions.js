@@ -272,9 +272,10 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 			.style("font-size", "15px")
 			.attr("class", "x label")
 			.attr("text-anchor", "middle")
-			.attr("x", map_dim.legend.width/2-20)
+			.attr("x", map_dim.legend.width/2)
 			.attr("y", -tick_size)
-			.text(x_field[0].Indicator + " (" + x_field[0].Measure + ") ");
+			.text(x_field[0].Indicator);
+			// .text(x_field[0].Indicator + " (" + x_field[0].Measure + ") ");
 
 		svg_legend.append('g')
 			.attr('transform', 'translate(0,0)')
@@ -287,13 +288,14 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 			.style("font-size", "15px")
 			.attr("class", "y label")
 			.attr("text-anchor", "middle")
-			.attr("y", 0)
-			.attr("x", 0)
+			.attr("y", -10)
+			.attr("x", -2)
 			.attr('transform', 'translate(' + (map_dim.legend.width+tick_size) + ',' + (map_dim.legend.height+tick_size)/2 + ') rotate(90)')
-			.html(function () {
-			  return "<tspan x='0' dy='-25px'>" + y_field[0].Indicator + "</tspan>" 
-			       + "<tspan x='0' dy='20px'>" + "("+y_field[0].Measure +")"+ "</tspan>";
-			});
+			.text('Annual PM2.5 exposure');
+			// .html(function () {
+			//   return "<tspan x='0' dy='-25px'>Annual PM2.5 exposure</tspan>" 
+			//        + "<tspan x='0' dy='20px'>" + "("+y_field[0].Measure +")"+ "</tspan>";
+			// });
 
 
 		svg_legend.append('g')
