@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<!-- import google 'Raleway' font -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,900" rel="stylesheet">
+	<link rel="stylesheet" href="css/smallmultiples.css">	
+
 <style>
 
 body {
@@ -75,20 +81,22 @@ body {
 
 #control {
 	position: absolute;
-	top:15%;
+	top:25%;
 	margin-left:6%;
 
 }
 
 #title {
 	position: absolute;
-	top: 0.5%;
+	top: 10%;
 	margin-left: 5%;
 	font-size: 30px;
 
 }
 
 </style>
+</head>
+
 <body>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -101,6 +109,33 @@ body {
 <script src="https://rawgit.com/AndreasSoiron/Color_mixer/master/color_mixer.js"></script>
 <script src="https://rawgit.com/jquery/jquery-color/master/jquery.color.js"></script>
 <script type="text/javascript" src="map_functions.js"></script>
+
+	<nav class="navbar navbar-default">
+		<div class="container container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="https://geo-social.com">Geog 3540</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="defaultNavbar1">
+				<ul class="nav navbar-nav">
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../shortbio.html">About</a></li>
+							<li><a href="../file/cv.pdf">Resume</a></li>
+							<li class="divider"></li>
+							<li><a href="zhouyayan-li@uiowa.edu">Contact</a></li>
+						</ul>
+					</li>
+				</ul>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
 <h1 id="title">Worldwide changes in air quality and <br> annual GDP growth</h1>
 <div id ="map_div">
 </div>

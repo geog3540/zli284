@@ -86,18 +86,28 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 						.attr("title", function(d) { return d.properties.ADMIN; })
 						.on("mouseover", function(d,i){
 
+							var id = "#pt_"+d.properties.ADM0_A3;
+							var map = d3.select(d.map);
+							console.log(map);
+							var polygonOnMap = getBoundingBoxCenter(map.select(id));
+
 							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,255,255)").attr("r", 10);
 							//d3.select(this).attr("class", "UHF_over");
 							d3.selectAll("#UHF_" + d.properties.ADM0_A3).attr("class", "UHF_over");
 							d3.select('#tooltip')
+							.transition()
 							.style('opacity', 1)
-							.text('1');
+							.style("font-size", "15px")
+							.text(d.properties.ADMIN);
+
+
 
 						})
 						.on("mouseout", function(d){
 							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,0,0)").attr("r", 3);
 							//d3.select(this).attr("class", "UHF_out");
 							d3.selectAll("#UHF_" + d.properties.ADM0_A3).attr("class", "UHF_out");
+							d3.select('#tooltip').style('opacity', 0);
 						});
 
 			 }); //close borough boundary JSON
@@ -331,5 +341,14 @@ function set_projection(projection, path, json, map_width, map_height) {
     projection
 		.scale(s)
 		.translate(t);
+}
+
+function getBoundingBoxCenter (selection) {
+	// get the DOM element from a D3 selection
+	var element = selection.node();
+	// use the native SVG interface to get the bounding box
+	var bbox = element.getBBox();
+	// return the center of the bounding box
+	return [bbox.x + bbox.width/2, bbox.y + bbox.height/2];
 }
 
