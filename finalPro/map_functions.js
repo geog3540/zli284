@@ -291,7 +291,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 			.attr("x", 0)
 			.attr('transform', 'translate(' + (map_dim.legend.width+tick_size) + ',' + (map_dim.legend.height+tick_size)/2 + ') rotate(90)')
 			.html(function () {
-			  return "<tspan x='0' dy='-35px'>" + y_field[0].Indicator + "</tspan>" 
+			  return "<tspan x='0' dy='-25px'>" + y_field[0].Indicator + "</tspan>" 
 			       + "<tspan x='0' dy='20px'>" + "("+y_field[0].Measure +")"+ "</tspan>";
 			});
 
