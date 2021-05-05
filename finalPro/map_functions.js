@@ -130,7 +130,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 
 
 		var swatch=(!map_dim.legend.dim)?30:map_dim.legend.dim;
-		console.log(swatch);
+		//console.log(swatch);
 		// if (map_dim.legend.dim) {
 		// 	console.log(map_dim.legend.dim);
 		// } else {
