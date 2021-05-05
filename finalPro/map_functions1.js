@@ -74,7 +74,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 						.attr("d", map_path)
 						.attr("title", function(d) { return d.properties.GEONAME; })
 						.on("mouseover", function(d,i){
-							d3.selectAll("#pt_" + d.id).style("fill", "rgb(0,255,255)").attr("r", 5);	
+							d3.selectAll("#pt_" + d.id).style("fill", "rgb(0,255,255)").attr("r", 7);	
 							//d3.select(this).attr("class", "UHF_over");
 							d3.selectAll("#UHF_" + d.id).attr("class", "UHF_over");
 						})
@@ -90,7 +90,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 	
 	//add legend
 	var svg_legend = map_g.append("g").attr("class", "svg_legend").attr("transform", "translate(" + map_dim.legend.left + "," +  map_dim.legend.top + ")");
-	var tick_size = 20;
+	var tick_size = 10;
 	//scales for first variable... used by both map types
 	var x_ticks=x_quantile.quantiles().slice(0);
 			x_ticks.unshift(d3.min($.map(map_data, function (g) { return parseFloat(g[x_var]); })));
