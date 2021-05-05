@@ -119,7 +119,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 		.tickValues(x_ticks)
 		.tickFormat(d3.format('.1f'))
 		.tickSize(-(map_dim.legend.height+tick_size),0,0)
-		.tickPadding([25]);
+		.tickPadding([15]);
 
 
 	//json_data.fields
@@ -130,6 +130,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 
 
 		var swatch=(!map_dim.legend.dim)?30:map_dim.legend.dim;
+		console.log(swatch);
 		// if (map_dim.legend.dim) {
 		// 	console.log(map_dim.legend.dim);
 		// } else {

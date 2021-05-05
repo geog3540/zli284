@@ -117,6 +117,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 		
 		
 		var swatch=(!map_dim.legend.dim)?30:map_dim.legend.dim;
+		console.log(swatch);
 		var leg_orient =(!map_dim.legend.orientation)?"vertical":(map_dim.legend.orientation);
 		
 		xAxis.tickSize(-(swatch+tick_size),0,0);
@@ -189,11 +190,12 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 					.data(function(d, i) { return d; })
 					.enter().append("rect")
 						.attr("width", function(d, i, j) { 
-							console.log('x_ticks1: ', x_ticks[i+1], 'x_ticks2: ', x_ticks[i]);
-							console.log('first: ', x(x_ticks[i+1]), 'second: ', x(x_ticks[i]));
+							// console.log('x_ticks1: ', x_ticks[i+1], 'x_ticks2: ', x_ticks[i]);
+							// console.log('first: ', x(x_ticks[i+1]), 'second: ', x(x_ticks[i]));
 							return x(x_ticks[i+1])-x(x_ticks[i]); })
 						.attr("height", function(d, i, j) { return y(y_ticks[j])-y(y_ticks[j+1]); })
-						.attr("y", function(d, i, j){ return y(y_ticks[j+1]);})
+						.attr("y", function(d, i, j){
+						 return y(y_ticks[j+1]);})
 						.attr("x", function(d, i, j){ return x(x_ticks[i]);})
 						.style("fill",function(d){ return d;});
 	
