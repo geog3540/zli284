@@ -86,7 +86,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 						.attr("title", function(d) { return d.properties.ADMIN; })
 						.on("mouseover", function(d,i){
 
-							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,255,255)").attr("r", 5);
+							d3.selectAll("#pt_" + d.properties.ADM0_A3).style("fill", "rgb(0,255,255)").attr("r", 7);
 							d3.selectAll("#UHF_" + d.properties.ADM0_A3).attr("class", "UHF_over");
 
 						})
@@ -295,7 +295,7 @@ function draw_map (map_dim, map_projection, map_path, map_svg_id, palette, json_
 				.attr("r", 3)
 				.attr("id", function (d) { return "pt_" + d.CountryCode; })
 				.on("mouseover", function(d,i){
-					d3.select(this).style("fill", "rgb(0,255,255)").attr("r", 5);
+					d3.select(this).style("fill", "rgb(0,255,255)").attr("r", 7);
 					d3.selectAll("#UHF_" + d.CountryCode).attr("class", "UHF_over");
 				})
 				.on("mouseout", function(d){
